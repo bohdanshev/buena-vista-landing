@@ -1,13 +1,18 @@
 # Buena Vista Landing Page
 
 Live URL: https://buena-vista-landing.pages.dev
+GitHub: https://github.com/bohdanshev/buena-vista-landing
 
-## Structure
+Auto-deploys to Cloudflare Pages on every push to `main`.
+
+---
+
+## Repo structure
 
 ```
 buena-vista-landing/
-├── index.html        ← The landing page
-├── style.css         ← All styles
+├── index.html        ← The landing page (edit this)
+├── style.css         ← All styles (edit this)
 └── images/           ← All food/author photos
     ├── hero.jpeg
     ├── lobster-ravioli.jpeg
@@ -20,23 +25,34 @@ buena-vista-landing/
     └── isabella.jpg
 ```
 
-## How to update the page
+---
 
-1. Clone the repo (first time only):
-   ```
-   git clone https://github.com/bohdanshev/buena-vista-landing.git
-   cd buena-vista-landing
-   ```
+## How to push a new version
 
-2. Make your changes to `index.html` or `style.css`
+### First time (clone the repo)
+```bash
+git clone https://github.com/bohdanshev/buena-vista-landing.git
+cd buena-vista-landing
+```
 
-3. If replacing an image, drop the new file into `images/` using the same filename
+### Every time you update the page
 
-4. Push to deploy:
-   ```
-   git add .
-   git commit -m "describe what you changed"
-   git push
-   ```
+1. Make your changes to `index.html` or `style.css`
 
-That's it — Cloudflare auto-deploys within ~30 seconds of every push to `main`.
+2. To replace an image — drop the new file into `images/` using the **exact same filename**
+
+3. Push:
+```bash
+git add .
+git commit -m "short description of what you changed"
+git push
+```
+
+Cloudflare updates automatically within ~30 seconds. No extra steps needed.
+
+---
+
+## Image naming rules
+- No spaces in filenames (use hyphens: `sea-bass.png` not `sea bass.png`)
+- Keep the same filename when replacing an image so the HTML doesn't break
+- Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`
