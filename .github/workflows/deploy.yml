@@ -11,7 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Wrangler auth
+        run: |
+          mkdir -p ~/.wrangler/config
+          cat > ~/.wrangler/config/default.toml << EOF
+          oauth_token = "${{ secrets.WRANGLER_OAUTH_TOKEN }}"
+          refresh_token = "${{ secrets.WRANGLER_REFRESH_TOKEN }}"
+          scopes = [ "account:read", "user:read", "workers:write", "workers_kv:write", "workers_routes:write", "workers_scripts:write", "workers_tail:read", "d1:write", "pages:write", "zone:read", "ssl_certs:write", "ai:write", "ai-search:write", "ai-search:run", "queues:write", "pipelines:write", "secrets_store:write", "containers:write", "cloudchamber:write", "connectivity:admin", "offline_access" ]
+          EOF
+
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy . --project-name=buena-vista-landing --branch=main
-        env:
-          CLOUDFLARE_OAUTH_TOKEN: ${{ secrets.CLOUDFLARE_OAUTH_TOKEN }}
